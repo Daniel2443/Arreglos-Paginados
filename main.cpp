@@ -9,7 +9,10 @@ int *ini;
 //double rate = 5 * 1024 / 10.5;
 
 void WriteFile(int size_) {
-
+/* ESTO ES PARA SIMPLEMENTE HACER UN ARCHIVO RANDOM,
+ * SE PODRIA USAR PARA GENERAR EL ARCHIVO FINAL
+ *
+ * */
     srand (time (nullptr));
     ofstream outdata;
 
@@ -17,9 +20,9 @@ void WriteFile(int size_) {
     bool finish = false;
     //fstream data("archivo.txt");
 
-    outdata.open ("archivo1.txt");
+    outdata.open ("archivo.txt");
     for (int i = 0; i < size_; ++i) {
-        outdata<< rand ()<<endl;
+        outdata<< rand ()<<",";
     }
 }
 void fillPages(){
@@ -33,25 +36,57 @@ int *page5 = new int[256];
 int *page6 = new int[256];
 int *page1 = new int[256];
 char *line = NULL;
+void refill(){
+    ofstream outdata;
 
+    int size = 256;
+    bool finish = false;
+    //fstream data("archivo.txt");
+
+    outdata.open ("archivo5.txt");
+    for (int i = 0; i < 256 ; ++i) {
+        outdata<< page1[i]<<endl;
+    }
+    cout << "entré en pagina 2"<<endl;
+    for (int i = 0; i < 256 ; ++i) {
+        outdata<< page2[i]<<endl;
+    }   cout << "entré en pagina 3"<<endl;
+    for (int i = 0; i < 256 ; ++i) {
+        outdata<< page3[i]<<endl;
+    }   cout << "entré en pagina 4"<<endl;
+    for (int i = 0; i < 256 ; ++i) {
+        outdata<< page4[i]<<endl;
+    }     cout << "entré en pagina 5"<<endl;
+    for (int i = 0; i < 256 ; ++i) {
+        outdata<< page5[i]<<endl;
+    }
+    cout << "entré en pagina 6"<<endl;
+    for (int i = 0; i < 256 ; ++i) {
+        outdata<< page6[i]<<endl;
+    }
+
+
+
+
+};
 void readFile(char* &linea) {
     const string aFile = "archivo1.txt";
 
-    ifstream f(aFile);
-    string line;
-
-    while (!f.eof()) {
+    //ESTO LEE TODAS LAS LINEAS
+    /*while (!f.eof()) {
         getline(f,line);
 
-        if (line.length() == 0)
+        //f.seekg (0, len);
+        if (line.length() == 0|| line[0] == ';')
             cout << "IGNORE LINE\n";
         else
             cout << line << "\n";
-    }
-/*    FILE *fp = fopen ("archivo1.txt", "r");
-    char ignore[1024];
+    }*/
 
-    fgets(ignore, sizeof(ignore), fp);
+/*    ESTO ES PARA RELLENAR LAS PAGINAS, SI FUNCIONA. LO QUE PASA ES QUE LUEGO NO SE
+    COMO HACER PARA GUARDAR EL PROGRESO, Y LUEGO PODER LEER LAS LINEAS QUE FALTAN*/
+
+   FILE *fp = fopen ("archivo1.txt", "r");
     if (fp == NULL) {
         exit (EXIT_FAILURE);
     }
@@ -60,10 +95,13 @@ void readFile(char* &linea) {
     int counter = 0;
     int ciclos = 0;
     while ((getline(&linea, &len, fp)) != -1) {
-
         int a;
         a = atoi (linea);
-        if (counter < 256 && ciclos==0) {
+        if(a==0){
+            break;
+        }
+
+            if (counter < 256 && ciclos==0) {
             page1[counter] = a;
 
         }else if(counter==256){
@@ -125,18 +163,22 @@ void readFile(char* &linea) {
     //cout <<"asd" <<endl;
     fclose(fp);
     //cout <<"asd1" <<endl;
-*//*    if (line){
+    if (line){
       //  cout <<"asd2" <<endl;
         free (line);
         //cout <<"asd3" <<endl;
-    }*//*
-    //cout <<"asd4" <<endl;*/
+    }
+    //cout <<"asd4" <<endl;
 }
 int main() {
+    //WriteFile (356);
     readFile (line);
+    //refill ();
     int page=0;
+
     for (int i = 0; i < 256 ; ++i) {
         cout<< page1[i]<<endl;
+
     }
     cout << "entré en pagina 2"<<endl;
     for (int i = 0; i < 256 ; ++i) {
