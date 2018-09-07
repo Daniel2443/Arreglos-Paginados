@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/aykull/CLionProjects/ArreglosPaginados/InsertionSort.h
+stdio.h
+-
+math.h
+-
+
+/home/aykull/CLionProjects/ArreglosPaginados/QuickSort.h
+stdio.h
+-
+
+/home/aykull/CLionProjects/ArreglosPaginados/SelectionSort.h
+stdio.h
+-
+
+/home/aykull/CLionProjects/ArreglosPaginados/main.cpp
+iostream
+-
+QuickSort.h
+/home/aykull/CLionProjects/ArreglosPaginados/QuickSort.h
+SelectionSort.h
+/home/aykull/CLionProjects/ArreglosPaginados/SelectionSort.h
+InsertionSort.h
+/home/aykull/CLionProjects/ArreglosPaginados/InsertionSort.h
+
